@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'Diaz911Garage'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_ECDA49B1E1994CD886AD79816109FA34 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D2745DA5B77D474EAF708B85988791A9 }}
