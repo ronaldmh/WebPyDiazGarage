@@ -1,0 +1,29 @@
+{% extends 'clients/base.html' %}
+
+{% block content %}
+
+<!-- add_client.html -->
+<h1>Update Car</h1><br>
+<h2>{{ client.firstName }} {{ client.lastName }}</h2>
+<h2>{{ car.brand }} {{ car.model }} {{ car.year }}</h2><br>
+
+<form method="post" enctype="multipart/form-data" class="form-horizontal">
+  {% csrf_token %}
+  {% for field in formCar %}
+    <div class="form-group row">
+      <label for="{{ field.id_for_label }}" class="col-sm-2 col-form-label align-right">{{ field.label }}</label>
+      <div class="col-sm-10">
+        {{ field }}
+      </div>
+    </div>
+  {% endfor %}
+  <div class="form-group row">
+    <div class="offset-sm-2 col-sm-10">
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+  </div>
+  <a href="javascript:history.go(-1)">Go back</a>   
+</form>
+
+
+{% endblock %}

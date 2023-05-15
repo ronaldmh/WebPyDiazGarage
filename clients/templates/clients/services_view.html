@@ -1,0 +1,49 @@
+{% extends 'clients/base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1>Diaz Garage Services</h1><br>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Car</th>
+          <th>Client</th>
+          <th>Date</th>
+          
+          <th>Description</th>
+          <th>Status</th>
+          <th>Mechanic</th>
+          <th>Comments</th>
+          <th>Services</th>
+          <th>Cost</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for service in services %}
+        <tr>
+            <td>{{ service.id_car.brand }} {{ service.id_car.model }} {{ service.id_car.year }}</td>
+            <td>{{ service.id_client.firstName }} {{ service.id_client.lastName }}</td>          
+            <td>{{ service.date }}</td>
+            
+            <td>{{ service.description }}</td>
+            <td>{{ service.status }}</td>
+            <td>{{ service.mechanic }}</td>
+            <td>{{ service.comments }}</td>
+            <td>{{ service.services }}</td>
+            <td>{{ service.cost }}</td>
+            <td>
+            <a href="{% url 'update_service' service.id_service %}" class="btn btn-sm btn-primary">Update</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="9">There are no services registered.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a href="javascript:history.back()" class="btn btn-secondary">Back</a>
+    <a href="#" class="btn btn-secondary" onclick="window.scrollTo(0,0)">Top</a>
+  </div>
+{% endblock %}

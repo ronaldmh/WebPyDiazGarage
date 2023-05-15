@@ -1,0 +1,50 @@
+{% extends 'clients/base.html' %}
+
+{% block content %}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Car Details</h3>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-6">
+                <p><strong>ID Car:</strong> {{ car.id_car }}</p>
+                <p><strong>License:</strong> {{ car.license }}</p>
+                <p><strong>Brand:</strong> {{ car.brand }}</p>
+                <p><strong>Model:</strong> {{ car.model }}</p>
+                <p><strong>Year:</strong> {{ car.year }}</p>
+                <p><strong>Color:</strong> {{ car.color }}</p>
+              </div>
+              <div class="col-sm-6">
+                <p><strong>Version:</strong> {{ car.version }}</p>
+                <p><strong>Serie Number:</strong> {{ car.serieNumber }}</p>
+                <p><strong>VIN:</strong> {{ car.vin }}</p>
+                <p><strong>Engine:</strong> {{ car.engine }}</p>
+                <p><strong>Oil:</strong> {{ car.oil }}</p>
+                <p><strong>Traction:</strong> {{ car.traction }}</p>
+              </div>
+            </div>
+            <hr>
+            <p><strong>Comments:</strong> {{ car.comments }}</p>
+
+            <td>
+                {% if car.image %}
+                  <img src="{{ car.image.url }}" alt="{{ car.model }} image" style="max-height: 600px; max-width: 600px;">
+                {% else %}
+                  No image available.
+                {% endif %}
+              </td>                          
+          </div>
+          
+        </div>
+        <a href="javascript:history.go(-1)">Go back</a> 
+      </div>
+    </div>
+    
+  </div>
+     
+      
+{% endblock %}

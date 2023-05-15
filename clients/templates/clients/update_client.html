@@ -1,0 +1,71 @@
+{% extends 'clients/base.html' %}
+
+{% block content %}
+<div class="card">
+  <div class="card-header">
+    <h1 class="card-title">Update Client</h1>
+  </div>
+  <div class="card-body">
+    <div class="container">
+      <form method="post" class="form-horizontal">
+        {% csrf_token %}
+        <div class="form-group row">
+          <label for="{{ form.firstName.id_for_label }}" class="col-sm-2 col-form-label">First Name:</label>
+          <div class="col-sm-10">
+            {{ formClient.firstName }}
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="{{ form.lastName.id_for_label }}" class="col-sm-2 col-form-label">Last Name:</label>
+          <div class="col-sm-10">
+            {{ formClient.lastName }}
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="{{ form.email.id_for_label }}" class="col-sm-2 col-form-label">Email:</label>
+          <div class="col-sm-10">
+            {{ formClient.email }}
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="{{ form.phone.id_for_label }}" class="col-sm-2 col-form-label">Phone:</label>
+          <div class="col-sm-10">
+            {{ formClient.phone }}
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="{{ form.address.id_for_label }}" class="col-sm-2 col-form-label">Address:</label>
+          <div class="col-sm-10">
+            {{ formClient.address }}
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="{{ form.city.id_for_label }}" class="col-sm-2 col-form-label">City:</label>
+          <div class="col-sm-10">
+            {{ formClient.city }}
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="{{ form.state.id_for_label }}" class="col-sm-2 col-form-label">State:</label>
+          <div class="col-sm-10">
+            {{ formClient.state }}
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="{{ form.zipcode.id_for_label }}" class="col-sm-2 col-form-label">Zipcode:</label>
+          <div class="col-sm-10">
+            {{ formClient.zipcode }}
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="offset-sm-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">Update</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <a href="javascript:history.go(-1)">Go back</a>
+  </div>
+  
+</div>
+{% endblock %}

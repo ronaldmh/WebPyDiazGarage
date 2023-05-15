@@ -1,0 +1,75 @@
+
+
+{% extends 'clients/base.html' %}
+
+{% block content %}
+  <div class="container">    
+    <h1>Diaz Garage Clients</h1><br>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Search</h5>
+
+        <form id="search-form" method="POST" action="{% url 'client_list' %}" class="form-inline my-2 my-lg-0">
+          {% csrf_token %}
+          <div class="form-group">
+            <input type="text" name="firstName" class="form-control mr-sm-2" placeholder="First Name" id = 'id_firstName'>
+          </div>
+          <div class="form-group">
+            <input type="text" name="lastName" class="form-control mr-sm-2" placeholder="Last Name" id = 'id_lastName'>
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" class="form-control mr-sm-2" placeholder="Email" id = 'id_email'>
+          </div>
+          <div class="form-group">
+            <input type="text" name="phone" class="form-control mr-sm-2" placeholder="Phone" id = 'id_phone'>
+          </div>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </div><br>
+    
+    <a href="{% url 'register' %}" class="btn btn-primary">Register a new client</a><br><br>
+    
+    <table id="client-table" class="table table-striped">
+      
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Last Name</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Car</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for client in clients %}
+        <tr>
+          <td>{{ client.firstName }}</td>
+          <td>{{ client.lastName }}</td>
+          <td>{{ client.phone }}</td>
+          <td>{{ client.email }}</td>
+          <td>
+            {% for car in client.car_set.all %}
+                {{ car.brand }} {{ car.model }} {{ car.year }} <br>
+            {% endfor %}
+          </td>
+          <td>
+            <a href="{% url 'client_detail' client.id_client %}" class="btn btn-sm btn-primary">Details</a>
+            <a href="{% url 'create_service' client.id_client %}" class="btn btn-sm btn-primary">New Service</a>            
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5">There are no registered clients.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a href="javascript:history.back()" class="btn btn-secondary">Back</a>
+    <a href="#" class="btn btn-secondary" onclick="window.scrollTo(0,0)">Top</a>
+    
+  </div>
+
+{% endblock %}
+

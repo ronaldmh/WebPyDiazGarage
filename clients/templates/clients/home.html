@@ -1,0 +1,26 @@
+{% extends 'clients/base.html' %}
+{% load static %}
+
+{% block content %}
+
+  <div class="container">
+    <div class="jumbotron text-center">
+      <h1>Welcome to Diaz 911 Garage</h1>
+      <img src="{% static 'image/diaz911garage.jpg' %}" alt="Diaz911Garage Image" style="max-width: 600px; width: 100%; height: auto;">
+      <p class="lead">Your go-to solution for managing your clients and their cars.</p>
+      <hr>
+      <div class="row">
+        <div class="col-sm-6">
+          <h3>EXISTING CLIENTS</h3>
+          <p>Keep track of your clients and manage their information in one place. Add, edit, and view client details easily.</p>
+          <a href="{% url 'client_list' %}" class="btn btn-lg btn-primary">Our Clients</a>
+        </div>
+        <div class="col-sm-6">
+          <h3>ADD NEW CLIENTS</h3>
+          <p>Store and manage information about the cars of your clients. Add, edit, and view car details easily.</p>
+          <a href="{% url 'register' %}" class="btn btn-lg btn-primary">New Client</a>
+        </div>
+      </div>
+    </div>
+      </div>
+{% endblock %}

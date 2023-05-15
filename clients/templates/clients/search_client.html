@@ -1,0 +1,20 @@
+{% extends 'clients/base.html' %}
+
+{% block content %}
+
+<form action="" method="POST">
+
+		{% csrf_token %}
+		<h1>Search Client</h1>
+
+		{{form.as_p}}
+
+		<button type="submit">Search</button>
+		
+	</form>
+
+{% endblock %}
+
+
+
+

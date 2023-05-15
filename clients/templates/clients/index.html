@@ -1,0 +1,61 @@
+{% extends 'clients/base.html' %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Login Form</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">        
+		<div class="row justify-content-center mt-5">
+			<div class="col-md-4">
+				<h1 class="text-center mb-4">Login</h1>
+				<form method="post" action="{% url 'login_user' %}" >
+					{% csrf_token %}
+
+					{% if message %}
+					<div class="alert alert-success">
+   						{{ message }}
+					</div>
+					{% endif %}
+
+					<div class="form-group">
+						<label for="username">Username:</label>
+						<input type="text" name="username" id="username" class="form-control" placeholder="Enter your username" required>
+					</div>
+					<div class="form-group">
+						<label for="password">Password:</label>
+						<input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary btn-block">Login</button>
+                        
+					</div>
+                    <div class="form-group">
+						<p>Don't have an account? <a href="">Register</a> ,or contact our system manager mail@diaz911garage.com</p>
+                        <p></p>
+					</div>
+				</form>
+                <div>
+                    {% if messages %}
+                            <ul class="messages">
+                        {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                        </ul>
+                        {% endif %}
+                </div>
+			</div>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+{% endblock %}

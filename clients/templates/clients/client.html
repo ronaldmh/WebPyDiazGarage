@@ -1,0 +1,44 @@
+{% if clients_with_cars %}
+    <ul>
+    {% for client, car in clients_with_cars %}
+        <li>
+            <h1>{{ client.firstName }} {{ client.lastName }}</h1>
+            <p>Client id: {{ client.id_client }}</p>
+            
+            <p>Email: {{ client.email }}</p>
+            <p>Phone: {{ client.phone }}</p>
+            <p>Address: {{ client.address }}</p>
+            <p>City: {{ client.city }}</p>
+            <p>State: {{ client.state }}</p>
+            <p>Zipcode: {{ client.zipcode }}</p>
+            <p>Date added: {{ client.date_added }}</p>
+            {% if car %}
+                <h2>Car:</h2>
+                <p>Car id: {{ car.id_car }}</p>
+                <p>License: {{ car.license }}</p>
+                <p>Brand: {{ car.brand }}</p>
+                <p>Model: {{ car.model }}</p>
+                <p>Year: {{ car.year }}</p>
+                <p>Color: {{ car.color }}</p>
+                <p>Version: {{ car.version }}</p>
+                <p>Serie Number: {{ car.serieNumber }}</p>
+                <p>VIN: {{ car.vin }}</p>
+                <p>Engine: {{ car.engine }}</p>
+                <p>Oil: {{ car.oil }}</p>
+                <p>Traction: {{ car.traction }}</p>
+                <p>Comments: {{ car.comments }}</p>
+
+                <form method="post" action="{% url 'create_service' client.id_client %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="id_client" value="{{ client.id_client }}">
+                    <input type="hidden" name="id_car" value="{{ car.id_car }}">
+                    <button type="submit">Crear servicio</button>
+                </form>                
+
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No clients found.</p>
+{% endif %}

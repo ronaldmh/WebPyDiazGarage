@@ -1,0 +1,56 @@
+{% extends 'clients/base.html' %}
+
+{% block content %}
+
+  <div class="container">
+    <h1>Edit Service</h1><br>
+    <form method="POST" action="{% url 'update_service' id_service %}">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="car">Car:</label>
+        <input type="text" class="form-control" id="car" name="car" value="{{ service.id_car.brand }} {{ service.id_car.model }}" readonly>
+      </div>
+      <div class="form-group">
+        <label for="client">Client:</label>
+        <input type="text" class="form-control" id="client" name="client" value="{{ service.id_client.firstName }} {{ service.id_client.lastName }}" readonly>
+      </div>
+      <div class="form-group">
+        <label for="date">Date:</label>
+        <input type="datetime-local" class="form-control" id="date" name="date" value="{{ service.date|date:'Y-m-d\TH:i' }}">
+      </div>      
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <input type="text" class="form-control" id="description" name="description" value="{{ service.description }}">
+      </div>
+      <div class="form-group">
+        <label for="status">Status:</label>
+        <input type="text" class="form-control" id="status" name="status" value="{{ service.status }}">
+      </div>
+      <div class="form-group">
+        <label for="mechanic">Mechanic:</label>
+        <input type="text" class="form-control" id="mechanic" name="mechanic" value="{{ service.mechanic }}">
+      </div>
+      <div class="form-group">
+        <label for="comments">Comments:</label>
+        <input type="text" class="form-control" id="comments" name="comments" value="{{ service.comments }}">
+      </div>
+      <div class="form-group">
+        <label for="{{ form.services.id_for_label }}">Services:</label>
+        <div class="border p-3">
+            {% for choice in form.services %}
+                <div class="form-check">
+                    {{ choice }}
+                    {{ choice.label }}
+                </div>
+            {% endfor %}
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="cost">Cost:</label>
+        <input type="number" class="form-control" id="cost" name="cost" value="{{ service.cost }}">
+      </div>
+      <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+  </div>
+  {% endblock %}
+    

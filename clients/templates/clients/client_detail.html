@@ -1,0 +1,70 @@
+{% extends 'clients/base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1>Client Information</h1><br>
+    <a href="{% url 'update_client' client.id_client %}" class="btn btn-sm btn-primary">Update client</a>
+    <a href="{% url 'update_car' client.id_client %}" class="btn btn-sm btn-primary">Update car</a>
+    
+    <a href="{% url 'car_detail' client.id_client %}" class="btn btn-sm btn-primary">Car detail</a>
+
+  <br><br>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th>Name:</th>
+          <td>{{ client.firstName }}</td>
+        </tr>
+        <tr>
+          <th>Last Name:</th>
+          <td>{{ client.lastName }}</td>
+        </tr>
+        <tr>
+          <th>Phone:</th>
+          <td>{{ client.phone }}</td>
+        </tr>        
+        <tr>          
+          <th>Car:</th>
+          <td>
+            {% for car in cars %}
+              {{ car.brand }} {{ car.model }} ({{ car.year }})<br>
+            {% endfor %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <h2>Services History</h2><br>
+    <table class="table">
+      <thead>
+        <tr>
+            <th>Id.</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Services</th>
+            <th>Cost</th>
+            <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for service in services %}
+          <tr>
+            <td>{{ service.id_service }}
+            <td>{{ service.date }}</td>
+            <td>{{ service.description }}</td>
+            <td>{{ service.services }}</td>
+            <td>{{ service.cost }}</td>
+            <td>{{ service.status }}</td>
+            <td><a href="{% url 'update_service' service.id_service %}">Update</a></td>
+            <td><a href="{% url 'view_client_service' service.id_service %}">View</a></td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="4">There are no services</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a href="javascript:history.go(-1)">Go back</a> 
+  </div>
+{% endblock %}
